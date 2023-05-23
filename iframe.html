@@ -8,7 +8,7 @@
 
   <script>
     if (window.parent) {
-      if ('allow_third_party_cookie=yes'.test(document.cookie)) {
+      if (document.cookie.includes('allow_third_party_cookie=yes')) {
         window.parent.postMessage("allow_third_party_cookie", '*');
       } else {
         window.parent.postMessage("do_not_allow_third_party_cookie", '*');
