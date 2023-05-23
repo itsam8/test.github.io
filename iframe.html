@@ -1,22 +1,26 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Permissions-Policy" content="interest-cohort=()"/>
-
-  <title>Third-Party Cookie Test</title>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-  <h1>Third-Party Cookie Test</h1>
-
-  <script>
-    if (window.parent) {
-      if (document.cookie.includes('allow_third_party_cookie=yes')) {
-        window.parent.postMessage("allow_third_party_cookie", '*');
-      } else {
-        window.parent.postMessage("do_not_allow_third_party_cookie", '*');
+   <h2> Detecting JavaScript cookies. </h2>
+   <p id="demo"></p>
+   <script>
+      function supportsCookies() {
+         try {
+         
+            // Create cookie
+            document.cookie = 'cookietest=1';
+            var ret = document.cookie.indexOf('cookietest=') != -1;
+            
+            // Delete cookie
+            document.cookie = 'cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT';
+            return true;
+         } catch (e) {
+            return false;
+         }
       }
-      document.cookie = "allow_third_party_cookie=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    }
-  </script>
+      document.getElementById("demo").innerHTML = supportsCookies();
+   </script>
 </body>
 </html>
