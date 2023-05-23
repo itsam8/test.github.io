@@ -1,56 +1,18 @@
-<!doctype html>
-<html>
-<head>
-   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
-</head>
-<body>
-  <script>
-     
-     
-/*    const checkCookiesEnable = () => {
-      let isCookieEnabled = (window.navigator.cookieEnabled) ? true : false;
-      if (typeof window.navigator.cookieEnabled == "undefined" && !isCookieEnabled) {
-        document.cookie = "testcookie";
-        isCookieEnabled = (document.cookie.indexOf("testcookie") != -1) ? true : false;
-      }
+<script>
 
-      return isCookieEnabled;
-    }
+  if(!window.parent) return;
 
-    (function () {
-      window.addEventListener('message', event => {
-        try {
-          let data = JSON.parse(event.data);
-          if (data['test'] !== 'cookie')
-            return;
-          let result = checkCookiesEnable();
-          parent.postMessage(JSON.stringify({ 'result': result }), event.origin);
-        } catch (e) {
-          console.error(e);
-        }
-      });
-    })(); 
-    */
-     window.onload = function() {
-  // Check if the cookie exists
-  if (document.cookie.indexOf('myCookie') === -1) {
-    // Create the cookie
-    document.cookie = 'myCookie=true';
-    
-    // Display "true" in the <p> element
-    var pElement = document.getElementById('status');
-    pElement.textContent = 'true';
-  } else {
-    // An error occurred while creating the cookie
-    // Display "false" in the <p> element
-    var pElement = document.getElementById('status');
-    pElement.textContent = 'false';
+  if('allow_third_party_cookie=yes'.test(document.cookie)) {
+
+    window.parent.postMessage("allow_third_party_cookie", '*');
+
   }
-};
 
-  </script>
-   
-   <p id="status"></p>
+  else {
 
-</body>
-</html>
+    window.parent.postMessage("do_not_allow_third_party_cookie", '*');
+
+  }
+  document.cookie = "allow_third_party_cookie=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+
+</script>
