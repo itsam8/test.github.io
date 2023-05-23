@@ -1,18 +1,20 @@
-<script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Third-Party Cookie Test</title>
+</head>
+<body>
+  <h1>Third-Party Cookie Test</h1>
 
-  if(!window.parent) return;
-
-  if('allow_third_party_cookie=yes'.test(document.cookie)) {
-
-    window.parent.postMessage("allow_third_party_cookie", '*');
-
-  }
-
-  else {
-
-    window.parent.postMessage("do_not_allow_third_party_cookie", '*');
-
-  }
-  document.cookie = "allow_third_party_cookie=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-
-</script>
+  <script>
+    if (window.parent) {
+      if ('allow_third_party_cookie=yes'.test(document.cookie)) {
+        window.parent.postMessage("allow_third_party_cookie", '*');
+      } else {
+        window.parent.postMessage("do_not_allow_third_party_cookie", '*');
+      }
+      document.cookie = "allow_third_party_cookie=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    }
+  </script>
+</body>
+</html>
