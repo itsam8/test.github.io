@@ -5,7 +5,9 @@
 </head>
 <body>
   <script>
-    const checkCookiesEnable = () => {
+     
+     
+/*    const checkCookiesEnable = () => {
       let isCookieEnabled = (window.navigator.cookieEnabled) ? true : false;
       if (typeof window.navigator.cookieEnabled == "undefined" && !isCookieEnabled) {
         document.cookie = "testcookie";
@@ -27,7 +29,28 @@
           console.error(e);
         }
       });
-    })();
+    })(); 
+    */
+     window.onload = function() {
+  // Check if the cookie exists
+  if (document.cookie.indexOf('myCookie') === -1) {
+    // Create the cookie
+    document.cookie = 'myCookie=true';
+    
+    // Display "true" in the <p> element
+    var pElement = document.getElementById('status');
+    pElement.textContent = 'true';
+  } else {
+    // An error occurred while creating the cookie
+    // Display "false" in the <p> element
+    var pElement = document.getElementById('status');
+    pElement.textContent = 'false';
+  }
+};
+
   </script>
+   
+   <p id="status"></p>
+
 </body>
 </html>
